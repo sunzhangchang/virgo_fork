@@ -27,12 +27,12 @@ all:$(OUT_DIR) $(EXE)
 
 $(OUT_DIR):
 	mkdir $@
-	
+
 $(OUT_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(CXX) -o $@ $(CFLAGS) -m$(ARCH) -c $^
-	
+
 $(RES):
-	windres -O coff -F $(WINDRES_ARCH) $(SRC_DIR)/$(NAME).rc $(RES) 
+	windres -O coff -F $(WINDRES_ARCH) $(SRC_DIR)/$(NAME).rc $(RES)
 
 $(EXE): $(OBJS) $(RES)
 	$(CXX) -o $(EXE) $(OBJS) $(RES) -m$(ARCH) $(LDFLAGS)
@@ -51,7 +51,7 @@ target1:
 # 	$(CXX) -o $(EXE) $(OBJS) $(NAME).res -m$(ARCH) $(LDFLAGS)
 
 # $(NAME).res: $(NAME).rc
-# 	windres -O coff -F $(WINDRES_ARCH) $(NAME).rc $(NAME).res 
+# 	windres -O coff -F $(WINDRES_ARCH) $(NAME).rc $(NAME).res
 
 # .cpp.o:
 # 	$(CXX) -o $@ $(CFLAGS) -m$(ARCH) -c $<

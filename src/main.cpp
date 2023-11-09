@@ -21,6 +21,16 @@ void __main(void) {
             v.toggle_hotkeys();
         } else if (msg.wParam == PIN_HOTKEY) {
             v.toggle_pin(GetForegroundWindow());
+        } else if (msg.wParam == LEFT_HOTKEY)  {
+            auto current = v.current_desk_id();
+            if (current > 0) {
+                v.go_to_desk(current - 1);
+            }
+        } else if (msg.wParam == RIGHT_HOTKEY)  {
+            auto current = v.current_desk_id();
+            if (current + 1 < NUM_DESKTOPS) {
+                v.go_to_desk(current + 1);
+            }
         } else if (msg.wParam % 2 == 0) {
             v.go_to_desk(msg.wParam / 2);
         } else {

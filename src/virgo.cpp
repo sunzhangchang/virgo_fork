@@ -23,6 +23,10 @@ namespace virgo {
         return this->desktops[this->current];
     }
 
+    unsigned Virgo::current_desk_id() {
+        return this->current;
+    }
+
     void Virgo::init() {
         this->handle_hotkeys = true;
         for (unsigned i = 0; i < NUM_DESKTOPS; ++ i) {
@@ -32,6 +36,8 @@ namespace virgo {
         register_hotkey(QUIT_HOTKEY, MOD_ALT | MOD_CONTROL | MOD_SHIFT | MOD_NOREPEAT, 'Q');
         register_hotkey(STOP_HOTKEY, MOD_ALT | MOD_CONTROL | MOD_SHIFT | MOD_NOREPEAT, 'S');
         register_hotkey(PIN_HOTKEY, MOD_ALT | MOD_CONTROL | MOD_SHIFT | MOD_NOREPEAT, 'P');
+        register_hotkey(LEFT_HOTKEY, MOD_ALT | MOD_NOREPEAT, VK_LEFT);
+        register_hotkey(RIGHT_HOTKEY, MOD_ALT | MOD_NOREPEAT, VK_RIGHT);
         this->trayicon.init();
     }
 
@@ -114,7 +120,7 @@ namespace virgo {
     }
 
     void Virgo::go_to_desk(unsigned i) {
-        if (this->current == i) {
+        if (this->current == i || i < 0 || i >= NUM_DESKTOPS) {
             return;
         }
         this->update();

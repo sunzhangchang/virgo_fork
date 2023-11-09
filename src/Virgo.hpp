@@ -17,6 +17,8 @@ namespace virgo {
 #define QUIT_HOTKEY NUM_DESKTOPS * 2
 #define STOP_HOTKEY NUM_DESKTOPS * 2 + 1
 #define PIN_HOTKEY NUM_DESKTOPS * 2 + 2
+#define LEFT_HOTKEY NUM_DESKTOPS * 2 + 3
+#define RIGHT_HOTKEY NUM_DESKTOPS * 2 + 4
 
     BOOL enum_func(HWND hwnd, LPARAM lParam);
 
@@ -44,6 +46,8 @@ namespace virgo {
 
         Windows & current_desk() &;
         const Windows & current_desk() const &;
+
+        unsigned current_desk_id();
 
         void go_to_desk(unsigned desk);
         void move_to_desk(unsigned desk);
